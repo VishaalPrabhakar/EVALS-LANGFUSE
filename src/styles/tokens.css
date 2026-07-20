@@ -1,0 +1,86 @@
+/**
+ * Design tokens.
+ *
+ * Every colour, radius and shadow in the app comes from here. Components must
+ * not hardcode hex values — that is what makes a theme swap possible and
+ * keeps the palette honest.
+ *
+ * Semantic naming (--ok / --bad) rather than literal (--green / --red) so the
+ * meaning survives a palette change.
+ */
+
+:root {
+  /* Ink */
+  --ink: #12211c;
+  --ink-2: #4a5a54;
+  --ink-3: #7e8d87;
+
+  /* Surfaces */
+  --paper: #ffffff;
+  --wash: #f7f8f7;
+  --line: #dfe4e1;
+  --line-2: #eef1ef;
+
+  /* Semantic */
+  --ok: #0f6b4f;
+  --ok-soft: #e6f2ec;
+  --bad: #b3261e;
+  --bad-soft: #fbeceb;
+  --warn: #8a5a00;
+  --warn-soft: #fdf3e0;
+  --warn-line: #ecd9ab;
+  --ai: #5b3fd6;
+  --ai-soft: #f3efff;
+  --ai-line: #ddd3ff;
+
+  /* Shape */
+  --r: 8px;
+  --r-sm: 6px;
+
+  /* Type */
+  --font: ui-sans-serif, -apple-system, 'Segoe UI', Inter, system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Motion */
+  --fast: 120ms;
+  --med: 200ms;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--wash);
+  color: var(--ink);
+  font: 15px/1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Respect user motion preference everywhere, not per-component. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Visible keyboard focus is a floor requirement, not a nice-to-have. */
+:focus-visible {
+  outline: 2px solid var(--ok);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Screen-reader-only utility. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
